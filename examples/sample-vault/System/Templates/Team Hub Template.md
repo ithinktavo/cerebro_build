@@ -8,35 +8,52 @@ tags:
   - team
 ---
 
-## Purpose
-
-## Members
+## Current state ({{date:YYYY-MM-DD}})
 
 - 
 
-## Current priorities (as of {{date:YYYY-MM-DD}})
+## Team
+
+- Reports through: 
+- Manager: 
+- Members, names and roles only: 
+
+## Works on
 
 - 
 
-## Links
+## Cadence
 
-- Board: 
-- Shared queries: 
-- Channels: 
+- Standups, 1:1s, planning, review days. Status report: cadence, audience, where it goes.
 
-## Check-in log
+## Tracker and queries
+
+- Record: which tracker, through which tool.
+- Changed in the last 7 days: 
+- Open and blocked: 
+- No change in 14 days: 
+
+## Priorities
+
+1. 
+
+## Milestones
 
 - 
 
 ## Next steps
 
-- [ ]  (owner: )
+- [ ] Step (owner, date).
 
 ## Waiting on
 
-- 
+- What, from whom, since when.
 
 ## Risks
+
+- 
+
+## Open questions
 
 - 
 
@@ -44,6 +61,10 @@ tags:
 
 - 
 
-## Notes in this folder
+## Reports
 
 - 
+
+## Notes in this folder
+
+- Log: 

@@ -4,13 +4,18 @@ summary: ""
 up:
   - "[[Home]]"
 created: "{{date:YYYY-MM-DD}}"
-tags:
-  - decision
+tags: []
 ---
+
+# {{title}}
 
 ## Context
 
+- 
+
 ## Decision
+
+- 
 
 ## Alternatives
 
@@ -19,3 +24,11 @@ tags:
 ## Consequences
 
 - 
+
+## Decided by and when
+
+- Name, role, date.
+
+## Status
+
+- proposed, decided, or reversed.

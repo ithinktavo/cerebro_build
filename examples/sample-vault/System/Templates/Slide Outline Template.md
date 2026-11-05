@@ -8,18 +8,18 @@ tags:
   - slides
 ---
 
-# Title
+# {{title}}
 
-Subtitle, audience, date
-
----
-
-## Slide 2
-
-- 
+Slides are separated by `---` lines with a blank line before and after them, for the core Slides plugin.
 
 ---
 
-## Slide 3
+## Slide title
+
+- One point per line.
+
+---
+
+## Next slide
 
 - 

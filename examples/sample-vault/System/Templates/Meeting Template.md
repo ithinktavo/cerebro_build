@@ -4,25 +4,31 @@ summary: ""
 up:
   - "[[Home]]"
 created: "{{date:YYYY-MM-DD}}"
-tags:
-  - meeting
+tags: []
 ---
 
-- Date: {{date:YYYY-MM-DD}}
-- Attendees (name and role): 
+# {{title}}
 
-## Agenda
+## Attendees
+
+- Name, role.
+
+## Context
 
 - 
 
-## Notes
+## Discussion
 
 - 
 
 ## Decisions
 
-- 
+- Each decision links its own decision note.
 
 ## Actions
 
-- [ ]  (owner: )
+- [ ] Action (owner, date).
+
+## Source
+
+- My notes, a transcript, or a Teams recap, with its date.
