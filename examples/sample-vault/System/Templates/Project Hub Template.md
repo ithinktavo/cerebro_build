@@ -8,32 +8,44 @@ tags:
   - project
 ---
 
-## Goal
-
-## Current state (as of {{date:YYYY-MM-DD}})
+## Current state ({{date:YYYY-MM-DD}})
 
 - 
 
-## People
+## Goal
 
-- Owner: 
-- Stakeholders: 
+- One line. A standing responsibility says ongoing.
 
-## Links
+## Teams and repos
 
-- Tracker: 
-- Documents: 
-- Repository blueprint: 
+- 
+
+## Tracker
+
+- Record: which tracker, through which tool.
+- Queries: changed in the last 7 days; open and blocked; no change in 14 days.
+
+## Priorities
+
+1. 
+
+## Milestones
+
+- Milestone, date.
 
 ## Next steps
 
-- [ ]  (owner: )
+- [ ] Step (owner, date).
 
-## Open questions
+## Waiting on
+
+- What, from whom, since when.
+
+## Risks
 
 - 
 
-## Waiting on
+## Open questions
 
 - 
 
@@ -43,4 +55,4 @@ tags:
 
 ## Notes in this folder
 
-- 
+- Log: 

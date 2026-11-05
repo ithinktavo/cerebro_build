@@ -1,13 +1,4 @@
-# {{date:YYYY-MM-DD}}
-
-## Focus
-
-- 
+## Plan
 
 ## Log
 
-- 
-
-## To file
-
-- 
