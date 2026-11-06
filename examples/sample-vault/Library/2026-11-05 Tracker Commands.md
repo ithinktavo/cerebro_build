@@ -83,7 +83,7 @@ Write only after a yes, with the command shown first. The flags depend on your v
 acli jira workitem create --project <KEY> --type Task --summary "<title>" --description "<text>"
 acli jira workitem transition --key <KEY>-123 --status "<status>"
 acli jira workitem assign --key <KEY>-123 --assignee "<account>"
-acli jira workitem comment --key <KEY>-123 --body "<text>"
+acli jira workitem comment create --key <KEY>-123 --body "<text>"   # the docs' usage line says create and its examples omit it; check your version
 ```
 
 ## Repositories, through gh and git

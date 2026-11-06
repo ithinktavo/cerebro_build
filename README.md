@@ -35,7 +35,8 @@ Your work trackers (GitHub Projects, Jira, Azure DevOps) and GitHub stay the sys
 | --- | --- | --- |
 | A developer across several GitHub repositories | A hub per repository with how it really runs, projects that span repositories, one running log per project, pull requests linked from the notes, "Where did we leave off?" answered in ten lines | [roles/developer.md](roles/developer.md) |
 | A manager, PM, or director across several teams | A hub per team with a check-in log, three named tracker queries per team, weekly status reports and a leadership roll-up drafted from sources, a monthly review | [roles/pm-director.md](roles/pm-director.md) |
-| Both | One vault with every module on, one daily note, one set of rituals. Read both playbooks. | Either, then the other |
+| A product owner who writes stories for teams that build with AI tools | One spec per story, drafted from the story and a read-only clone of the repository, delivered by pull request into `specs/`, read first by the developers' tools once the team adds seven lines to its rulebook; a readiness check before delivery; revisions by pull request | [roles/product-owner.md](roles/product-owner.md) |
+| More than one of these | One vault with every module and the Specs switch on, one daily note, one set of rituals. Read each playbook that fits. | The page for your main role, then the others |
 
 ## Your notebook first
 
@@ -46,15 +47,15 @@ Your work trackers (GitHub Projects, Jira, Azure DevOps) and GitHub stay the sys
 ## Set it up in 30 minutes
 
 1. **Install Obsidian, create an empty vault, and turn on the Daily notes and Templates core plugins.** [docs/01-set-up-obsidian.md](docs/01-set-up-obsidian.md)
-2. **Open a tool that can read and write the folder on the vault.** Claude Code (terminal or the desktop app's Code tab), Codex, or GitHub Copilot (CLI, or VS Code with the vault as the workspace). Claude chat, ChatGPT, and Microsoft 365 Copilot cannot create files; they join at step 6. [docs/02-connect-ai-tools.md](docs/02-connect-ai-tools.md)
+2. **Open a tool that can read and write the folder on the vault.** Claude Code (terminal or the desktop app's Code tab), Codex, or GitHub Copilot (CLI, or VS Code with the vault as the workspace). Claude chat, ChatGPT in the browser, and Microsoft 365 Copilot cannot create files; the ChatGPT desktop app in its Codex mode counts as Codex. The chat tools join at step 6. [docs/02-connect-ai-tools.md](docs/02-connect-ai-tools.md)
 3. **Fill in the profile in the build prompt and paste it.** Read the design it proposes, answer its questions or take the defaults, say yes. [prompts/build-work-vault.md](prompts/build-work-vault.md)
 4. **Set the Obsidian settings it prints.** New note location, attachment folder, daily notes, templates.
-5. **Connect your trackers.** Sign in once to `gh`, Jira's tool, or `az`, create three named queries per team, and say "Record these queries in the Team Alpha hub". [docs/03-connect-work-trackers.md](docs/03-connect-work-trackers.md)
+5. **Connect your trackers.** Sign in once to `gh`, Jira's tool, or `az`, create three named queries per team, and say "Record these queries in the Team Alpha hub". A product owner also installs git, signs in to `gh`, and clones each repository outside the vault (steps 2 to 5 of [roles/product-owner.md](roles/product-owner.md)), and creates two queries per project, next up and spec question, recorded in the project hub. [docs/03-connect-work-trackers.md](docs/03-connect-work-trackers.md)
 6. **Say "Start my day".** The first week is laid out in [prompts/first-week.md](prompts/first-week.md). For chat tools, [prompts/context-pack.md](prompts/context-pack.md).
 
 ## What the vault looks like
 
-Every vault shares the spine. The three modules switch on from your profile: Repos for people who name a repository, Teams for people who name a team, Reports for people who owe a recurring report across teams. A typical result for someone who is both a developer and a manager:
+Every vault shares the spine. The three modules and one switch turn on from your profile: Developer, the `Repos/` folder, for people who name a repository, Teams for people who name a team, Reports for people who owe a recurring report across teams, and Specs for people who write stories, which adds no folder. A typical result for someone who is both a developer and a manager:
 
 ```
 AGENTS.md        the single rulebook
@@ -94,9 +95,9 @@ A complete example, with the design the AI proposed before building it and what 
 | Path | What it is |
 | --- | --- |
 | [prompts/build-work-vault.md](prompts/build-work-vault.md) | The build prompt: profile, design pass, build. The whole setup in one paste. |
-| [prompts/](prompts/) | The rituals, one file each: the first week, the weekly status report, a team check-in, meeting notes, closing the week, the context pack for chat tools. |
+| [prompts/](prompts/) | The rituals, one file each: the first week, the weekly status report, a team check-in, meeting notes, closing the week, a story spec, the context pack for chat tools. |
 | [docs/](docs/) | Step-by-step setup: Obsidian, AI tools, trackers, the daily and weekly rhythm, safety. |
-| [roles/](roles/) | Playbooks for developers and for managers, PMs, and directors. |
+| [roles/](roles/) | Playbooks for developers, for managers, PMs, and directors, and for product owners. |
 | [examples/](examples/) | A vault built by the prompt for a placeholder persona, the design the AI proposed for it, and what the vault looks like after a week of use. |
 | [presentation/](presentation/) | A short talk that introduces the setup, with speaker notes and a demo script. |
 
