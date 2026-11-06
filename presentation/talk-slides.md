@@ -93,7 +93,20 @@ Start my day, two Log lines, Close my day, then a status report for Team Alpha
 - Developers: repo hubs, project logs, "Where did we leave off?"
 - Managers and PMs: team hubs, check-ins, weekly status reports
 - Directors: roll-ups across teams, monthly reviews
+- Product owners: a spec per story, delivered to the repository, read first by the developers' tools
 - Most people are two of these: one vault, every module on
+
+---
+
+## The product owner
+
+From a story to a spec the developers' tools read first
+
+- "Spec for ALPHA-123": the story, your notes, and the code at a known commit, on one page
+- Criteria AC1 and up, Given, When, Then, each with how it is verified; every AI proposal marked
+- "Deliver the spec for ALPHA-123": a pull request into `specs/`, one comment on the story
+- "Start on ALPHA-123": the developer's tool reads the spec first and proves each criterion in its PR
+- No write access? The spec goes onto the story, and the first commit adds the file
 
 ---
 
@@ -108,7 +121,7 @@ Start my day, two Log lines, Close my day, then a status report for Team Alpha
 ## Safety
 
 - Asks before changing your words, never deletes or renames
-- Reads freely, shows every write first, never sends anything
+- Reads freely, shows every write first, never emails or posts to people
 - No secrets, no customer data; names and roles only for other people
 - Company-approved tools, work accounts, company backup
 

@@ -39,9 +39,14 @@ If you track teams:
 - `sample-vault/System/Templates/Status Report Template.md`: the five headings every status report uses.
 - `sample-vault/System/Templates/Roll-Up Template.md`: the roll-up grouped the way leadership reads.
 
+If you write stories:
+
+- `product-owner-design-pass.md`: the profile Jordan Example filled in as a product owner, and the design the AI printed from it: the Specs switch on with no new folder, two read-only repositories, one question with its default.
+- `story-spec.md`: one story from "Spec for ALPHA-123" to merged code: the spec note in full, the review table, the delivery as one set of commands, the developer's ten-line plan, the revision, the pull request body with its Acceptance criteria section, and the week's close.
+
 ## What was tested
 
-The sample was built on 2026-11-05 by Claude acting as the coding tool, with no tracker, git, or gh access, and verified by the script the prompt asks for. Two more personas, a Windows developer in Build now mode and a director with one-on-one logs and Azure DevOps in Design first mode, were built the same way the same day, and each verified clean. The prompt has not yet been run with Codex or GitHub Copilot, and no vault built by it has been opened in Obsidian. The Obsidian settings and the tool facts come from the vendors' documentation, checked on 2026-11-04 and 2026-11-05.
+The sample was built on 2026-11-05 by Claude acting as the coding tool, with no tracker, git, or gh access, and verified by the script the prompt asks for. Two more personas, a Windows developer in Build now mode and a director with one-on-one logs and Azure DevOps in Design first mode, were built the same way the same day, and each verified clean. The prompt has not yet been run with Codex or GitHub Copilot, and no vault built by it has been opened in Obsidian. The Obsidian settings and the tool facts come from the vendors' documentation, checked on 2026-11-04 and 2026-11-05. No product-owner vault has been built yet; the spec, the commands, and the pull request body in `story-spec.md` are illustration.
 
 ## What this example is not
 

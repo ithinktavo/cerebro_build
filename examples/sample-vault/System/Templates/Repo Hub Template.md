@@ -23,7 +23,7 @@ tags:
 
 - Which project or team, and which part of the system.
 
-## Architecture (read at commit )
+## Architecture (read at commit [sha])
 
 - Ten lines at most, written from the repository.
 

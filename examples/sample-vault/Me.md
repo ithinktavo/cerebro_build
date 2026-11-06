@@ -45,6 +45,7 @@ This note tells any AI tool who I am and how I like to work. The rules for worki
 
 - I keep a daily note. To-dos live in the vault. Nothing else to preserve.
 - 1:1 notes in the vault: no.
+- Specs for my stories: _to fill in_.
 
 ## The one thing I am tired of re-explaining
 

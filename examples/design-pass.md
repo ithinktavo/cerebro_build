@@ -12,6 +12,7 @@ Alex replied "yes", and the vault in `sample-vault/` is what the AI built from i
 - My week: standup daily at 9:30, 1:1s on Tuesdays, staff meeting Mondays, planning every other Thursday.
 - Note habits: I keep a daily note; to-dos in the vault; nothing else to preserve.
 - 1:1 notes in the vault: no.
+- Specs for my stories: left blank.
 - The one thing I am tired of re-explaining: which repository serves which part of checkout, and the deploy order.
 - Operating system: macOS. Mode: Design first.
 - How I work with AI: as written in the prompt.
@@ -25,6 +26,7 @@ Every "Source: profile, 2026-11-05" line in the sample vault points at this bloc
 - Developer: on. You named two repositories and your roles include developer.
 - Teams: on. You named Team Alpha and Team Beta, and two tech leads report to you. One-on-one logs stay off, as you said.
 - Reports: on. You owe a weekly status across two teams and your roles include manager.
+- Specs: off. Specs for my stories was left blank.
 
 ## 2. Mapping table
 
@@ -59,7 +61,7 @@ Every "Source: profile, 2026-11-05" line in the sample vault points at this bloc
 
 ## 5. Report recipes
 
-- Weekly status, Fridays: one `YYYY-MM-DD <Team> Status Report.md` per team with Done, In progress, Blocked or at risk, Decisions needed, Next, every line ending with its source; then `Reports/YYYY-MM-DD Weekly Roll-Up.md` grouped by team, with a paste-ready copy for Teams. Microsoft 365 Copilot fits the house format there; nothing is sent by the AI.
+- Weekly status, Fridays: one `YYYY-MM-DD <Team> Status Report.md` per team with Done, In progress, Blocked or at risk, Decisions needed, Next, every line ending with its source; then `Reports/YYYY-MM-DD Weekly Roll-Up.md` grouped by team, with a paste-ready copy for Teams. Microsoft 365 Copilot fits the house format there. The AI never emails or posts to people; its only writes outside the vault are the push, the pull request, and the story comment, each shown first and run on your yes.
 - Monthly review, on request: `Reports/YYYY-MM-DD Monthly Review.md`.
 
 ## 6. Rituals, in your names

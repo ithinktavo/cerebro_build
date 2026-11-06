@@ -2,12 +2,13 @@
 
 GitHub and the work trackers stay the systems of record. The vault links to their items and never copies them. Connect a tracker and the AI can read its live state through the tracker's command-line tool, with your own permissions and nothing more.
 
-This serves both jobs the guide is written for:
+This serves the three jobs the guide is written for:
 
 - A manager, PM, or director asks for a status report or a check-in agenda and gets it from the tracker, not from memory, with a source on every line. See [Managers, PMs, and directors](../roles/pm-director.md).
 - A developer asks what is assigned to them across several repositories, which of their pull requests wait on review, and what changed in a repository since the last session. See [Developers](../roles/developer.md).
+- A product owner asks for a spec and gets the story read in full through the tracker tool, with two more queries per project, next up and spec question. See [Product owners](../roles/product-owner.md).
 
-Many people are both. One vault handles it, because each team or project hub names its own tracker. Team Alpha can sit in Jira, Team Beta in GitHub Projects, and a third team in Azure DevOps at the same time.
+Many people are more than one of these. One vault handles it, because each team or project hub names its own tracker. Team Alpha can sit in Jira, Team Beta in GitHub Projects, and a third team in Azure DevOps at the same time.
 
 ## The pattern, whatever the tracker
 
@@ -30,6 +31,8 @@ The rules the vault gives the AI, written into `AGENTS.md` by the build:
 - When you ask for status, read the tracker first and the vault second, and say which is newer when they disagree.
 - A tool that is not signed in or that fails is named in one line, and the AI continues from the vault.
 - Never log in, store, or print tokens. Never run a tracker tool during the build.
+
+With the Specs switch on, one more rule: a story you wrote is read in full, description and comments, to draft, review, or revise its spec; the spec is in your words and pastes none of it, and attachments stay in the tracker.
 
 The tools return keys and numbers, not links. The URL shapes the AI uses to link an item:
 
@@ -90,8 +93,11 @@ gh pr view 123 -R example-org/checkout-api
 gh pr checks 123 -R example-org/checkout-api
 gh issue list -R example-org/checkout-api --assignee "@me"
 gh issue view 45 -R example-org/checkout-api
+gh issue view 45 -R example-org/checkout-api --comments                # the issue with its comments, read in full for a spec
 gh run list -R example-org/checkout-api --limit 10
 gh pr list -R example-org/checkout-api --search "updated:>=2026-10-29"   # what changed since a date
+gh repo clone example-org/checkout-api ~/code/checkout-api              # a read-only clone outside the vault, for specs
+gh repo view example-org/checkout-api --json viewerPermission           # my access to the repository
 ```
 
 Read, across every repository you can see:
@@ -112,7 +118,7 @@ Two command-line tools work with Jira Cloud. Install one, not both. The Tracker 
 
 ### Atlassian CLI, Atlassian's own tool
 
-Install on macOS with `brew tap atlassian/homebrew-acli` and then `brew install acli`. On Windows, download `acli.exe` from the install page. On Linux, use the apt or yum repository on the same page. Docs: [developer.atlassian.com/cloud/acli](https://developer.atlassian.com/cloud/acli/guides/install-acli/). It documents Jira Cloud; for Jira Data Center use jira-cli below.
+Install on macOS with `brew tap atlassian/homebrew-acli` and then `brew install acli`, if your Mac has Homebrew; otherwise the install page lists other downloads. On Windows, download `acli.exe` from the install page. On Linux, use the apt or yum repository on the same page. Docs: [developer.atlassian.com/cloud/acli](https://developer.atlassian.com/cloud/acli/guides/install-acli/). It documents Jira Cloud; for Jira Data Center use jira-cli below.
 
 Sign in through the browser:
 
@@ -130,6 +136,8 @@ Read:
 
 ```bash
 acli jira workitem view ALPHA-123
+acli jira workitem view ALPHA-123 --fields summary,description,comment   # the default fields leave out comments; check your version
+acli jira workitem comment list --key ALPHA-123
 acli jira workitem search --jql 'filter = "Team Alpha changed 7d"' --limit 50
 acli jira workitem search --jql 'filter = "Team Alpha open and blocked"' --json
 acli jira workitem search --jql "assignee = currentUser() AND statusCategory != Done" --limit 50
@@ -140,8 +148,11 @@ Write, always shown first:
 ```bash
 acli jira workitem create --summary "New task" --project "ALPHA" --type "Task"
 acli jira workitem transition --key "ALPHA-123" --status "Done"
-acli jira workitem comment create --key "ALPHA-123" --body "Comment text"
+acli jira workitem comment create --key "ALPHA-123" --body "Comment text"   # comment create per the usage line; the docs' examples omit create; add --help if it errors
+acli jira workitem comment create --key "ALPHA-123" --body-file spec.txt     # the body from a file, for a long comment
 ```
+
+The body is plain text or ADF. acli sends plain text, and what Jira does with Markdown sent that way is undocumented; Jira's browser editor converts Markdown on the fly and accepts raw Markdown pasted in, so pasting the copy into the story there is the fallback; check the headings and lists after the paste.
 
 If a command errors, add `--help` to it to see the syntax of your version.
 
@@ -164,6 +175,7 @@ jira me
 jira issue list -q 'filter = "Team Alpha changed 7d"' --plain
 jira issue list -a$(jira me) -s~Done
 jira issue view ALPHA-123
+jira issue view ALPHA-123 --comments 10 --plain   # with its last 10 comments; --plain and --raw are in the command help
 jira sprint list --current
 jira epic list
 ```
@@ -174,6 +186,8 @@ Write, always shown first:
 jira issue create -tTask -s"Title" -b"Description" --no-input
 jira issue move ALPHA-123 "In Progress"
 jira issue comment add ALPHA-123 "Comment text"
+jira issue comment add ALPHA-123 --template spec.md      # the comment from a file
+jira issue comment add ALPHA-123 --template - < spec.md  # the same with the file piped in
 ```
 
 ### Saved filters
@@ -211,11 +225,14 @@ az boards query --wiql "SELECT [System.Id], [System.Title], [System.State], [Sys
 az pipelines runs list --top 10 -o table                               # only if your pipelines run in Azure DevOps
 ```
 
+`az boards work-item show` returns the fields and relations of an item and none of its comments, and no `az boards` command lists them. For a story with a spec, the comments come from the REST route `GET https://dev.azure.com/YOURORG/Platform/_apis/wit/workItems/123/comments?api-version=7.1-preview.4`, which the Tracker Commands note records; check your version for the `az devops invoke` arguments that call it.
+
 Write, always shown first:
 
 ```bash
 az boards work-item create --title "Title" --type Task --assigned-to "you@yourcompany.com"
 az boards work-item update --id 123 --state Active
+az boards work-item update --id 123 --discussion "Spec question, AC3: ..."   # add a comment
 ```
 
 Shared queries do the heavy lifting. Create the three per team under Boards, Queries, Shared Queries, copy each id from the URL, and record the ids in the team hub. The AI runs `az boards query --id` with them and never has to write a query. When a team's items span projects, turn on Query across projects in the query editor. `-o table` gives a readable table; `--query` with a JMESPath expression picks fields.
@@ -244,6 +261,16 @@ Azure DevOps, recorded as three shared query ids, built in the query editor. Sev
 
 The assigned-to-me query, one per tracker, recorded under Trackers and tools in `Home.md`: GitHub Projects `--query "assignee:@me -status:Done"`; Jira `assignee = currentUser() AND statusCategory != Done`, saved as a filter; Azure DevOps a shared query with Assigned To = @Me and State not in your closed states; GitHub repositories `gh search issues --assignee=@me --state=open`.
 
+## Two more queries for a product owner, per project
+
+With the Specs switch on, each project hub also records two queries: next up and spec question. "Start my day" turns them into at most two `AI:` lines per project. Next up, matched against `git ls-tree --name-only origin/main -- specs/` in the clone after a fetch and the spec notes in the vault, gives the stories next up with no spec, so the tracker keeps no has-a-spec marker. Spec question gives the developer questions on delivered specs, keeping only comments whose first words are "Spec question" and that are newer than the spec's version line.
+
+Next up is whatever already marks a story as ready to start: a Ready status, the next sprint, a label the team keeps. Spec question is comments that start with "Spec question". The queries below are starting points, not tested queries. Build each in the tracker's browser view, confirm it shows what you want, then say "Record these queries in the Checkout Migration hub: [the two names, ids, or filters]". Until they are recorded, the morning says so, and the changed-in-7-days query gives a candidate list, named as such.
+
+- Jira, two saved filters: next up `project = ALPHA AND issuetype = Story AND status = "Ready"`, or `sprint in futureSprints()`, whatever marks ready; spec question `project = ALPHA AND statusCategory != Done AND comment ~ "Spec question"`.
+- GitHub Projects and repositories: next up `--query "status:Ready -status:Done"` on the board; spec question `gh issue list -R example-org/checkout-api --state open --search '"Spec question" in:comments'`.
+- Azure DevOps, two shared query ids: next up a shared query on State and the next iteration, under the team's Area Path; spec question: a shared query with History Contains Words "Spec question" (an exact phrase; partial words may not match).
+
 ## What to ask once it works
 
 For a manager, PM, or director:
@@ -260,7 +287,14 @@ For a developer:
 - "Where did we leave off on checkout-api?"
 - "What did I ship this week?"
 
-"Start my day" runs the morning set for both: your open pull requests, the ones waiting on your review, the items assigned to you through the named queries, and each team's blocked query. See [Working day to day](04-working-day-to-day.md).
+For a product owner:
+
+- "Spec for ALPHA-123". The AI reads the story in full through the tracker tool, with the project hub and the clone, and shows the whole draft with every proposal marked `AI:`. See [Story spec](../prompts/story-spec.md).
+- "Which stories in Checkout Migration have no spec?"
+- "Which spec questions are open, and since when?"
+- "Review the spec for ALPHA-123".
+
+"Start my day" runs the morning set for every role: your open pull requests, the ones waiting on your review, the items assigned to you through the named queries, and each team's blocked query. See [Working day to day](04-working-day-to-day.md).
 
 ## Troubleshooting
 
@@ -274,6 +308,10 @@ For a developer:
 - The AI invents a query that fails: give it a saved query or filter by name instead, and record it in the hub.
 - The wrong Jira tool: the Tracker Commands note names one of the two. If it names the one you did not install, say so and the AI corrects the note.
 - Azure DevOps returns nothing for a team: the team lives in another project. Record the project in the team hub so the AI passes `--project`.
+- `gh repo clone` answers "Could not resolve to a Repository" (or git answers "Repository not found"): no read access, or a wrong name. Ask the repository's owner, and say "Add to today: asked [owner] for read access to checkout-api" so "Close my day" files it under Waiting on.
+- `git pull --ff-only` refuses, or `git status --short` is not empty: the clone has local commits or was edited by hand. The AI stops, says so, and never resets, restores, or discards anything there. Delete the clone folder in Finder or Explorer and run the clone command from step 5 of the product owner page again.
+- `spec/ALPHA-123` already exists, locally or on GitHub: a delivery stopped after its commit. Say "Deliver the spec for ALPHA-123" again; it resumes from the push.
+- The push is refused for SSO ("has enabled or enforced SAML SSO"): sign in to the organization on GitHub in the browser, then run `gh auth login` again, which re-authorizes GitHub CLI for the organization; only if you signed in by pasting a personal access token (classic), authorize that token under Settings, Developer settings, Personal access tokens, Configure SSO. Then say "Deliver the spec for ALPHA-123" again.
 - A command errors on a flag: add `--help` to it to see the syntax of your version.
 
 Next: [Working day to day](04-working-day-to-day.md).

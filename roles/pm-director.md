@@ -123,7 +123,7 @@ The flow is in [prompts/close-the-week.md](../prompts/close-the-week.md).
 
 ## Where reports go
 
-Delivery is yours. Paste the paste-ready copy into Outlook, Teams, Word, or Loop, where Microsoft 365 Copilot can fit it to the house format. The AI never sends anything. Microsoft 365 Copilot is where reports go, not a reader of the vault. For a deck, ask for a slide outline: a `type: plan` note that Obsidian's core Slides plugin presents.
+Delivery is yours. Paste the paste-ready copy into Outlook, Teams, Word, or Loop, where Microsoft 365 Copilot can fit it to the house format. The AI never emails or posts to people. Microsoft 365 Copilot is where reports go, not a reader of the vault. For a deck, ask for a slide outline: a `type: plan` note that Obsidian's core Slides plugin presents.
 
 ## Keeping yourself honest
 
@@ -178,6 +178,8 @@ Leave blank what you do not know. A blank becomes a marked blank and a question,
 4. "Roll up this week for leadership."
 5. "What is waiting on me, and what has not moved in two weeks?"
 
-If you also write code, read the [developer playbook](developer.md). One vault holds the Repos module next to Teams and Reports, with one daily note and one set of rituals, and "Close the week" adds "What did I ship this week?" between the team statuses and the roll-up.
+If you also write code, read the [developer playbook](developer.md). One vault holds the Developer module, the `Repos/` folder, next to Teams and Reports, with one daily note and one set of rituals, and "Close the week" adds "What did I ship this week?" between the team statuses and the roll-up.
+
+If you also write the stories your teams build and want a spec per story that the developers' tools read first, read [roles/product-owner.md](product-owner.md). The Specs switch joins the same vault next to Teams and Reports, and a developer's spec question on a story shows up in your morning.
 
 Next: [Set up Obsidian](../docs/01-set-up-obsidian.md).

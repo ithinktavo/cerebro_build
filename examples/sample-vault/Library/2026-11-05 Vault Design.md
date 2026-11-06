@@ -17,6 +17,7 @@ Built on 2026-11-05 from Alex's profile, after the design pass was approved with
 - Developer: on. Two repositories are named, and the roles include developer.
 - Teams: on. Team Alpha and Team Beta are named, and two tech leads report to Alex. One-on-one logs: off, as the profile says.
 - Reports: on. A weekly status is owed across two teams, and the roles include manager.
+- Specs: off. Specs for my stories was left blank.
 
 ## Mapping table
 
